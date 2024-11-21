@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Random Number</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        #random-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Generate Secret Key</h2>
+        <button id="generate-btn" class="btn btn-success btn-block">Generate Secret Key</button>
+        <div id="random-number" class="mt-3 text-center"></div>
+    </div>
+
+    <script>
+        document.getElementById('generate-btn').addEventListener('click', function() {
+            const appNum = localStorage.getItem('application_number');
+
+            fetch('/generate-random', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ application_number: appNum })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('random-number').innerText = `Your Secret Key is: ${data.random_number}`;
+                    setTimeout(() => {
+                        window.location.href = '/login.html';
+                    }, 10000); // 10 seconds delay
+                } else {
+                    document.getElementById('random-number').innerText = data.message;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

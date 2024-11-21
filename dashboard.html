@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #283c86, #45a247);
+            color: white;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #logout-btn {
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            background-color: yellow;
+            color: black;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 90vh;
+            padding: 20px;
+        }
+
+        .welcome {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        label {
+            flex: 1;
+            text-align: left;
+        }
+
+        input, select {
+            flex: 2;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button[type="submit"] {
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            background-color: #4caf50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Student Dashboard</div>
+        <div class="profile">
+            <span id="application_number"></span>
+            <button id="logout-btn">Logout</button>
+        </div>
+    </header>
+    <main>
+        <section class="welcome">
+            <h2>Your Way To Ideal College</h2>
+            <form id="rankForm">
+                <div class="form-group">
+                    <label for="hallTicket">Hall Ticket Number:</label>
+                    <input type="text" id="hallTicket" name="hallTicket" required pattern="^[A-Za-z0-9]+$" title="Must contain only letters and numbers">
+                </div>
+                
+                <div class="form-group">
+                    <label for="degree">Degree:</label>
+                    <select id="degree" name="degree">
+                        <option value="engineering">Engineering</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Cast">Caste:</label>
+                    <select id="Cast" name="Cast">
+                        <option value="SC">SC</option>
+                        <option value="GM">GM</option>
+                        <!-- Add more caste options if needed -->
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="branch">Branch:</label>
+                    <select id="branch" name="branch">
+                        <option value="AI Artificial Intelligence">AI Artificial Intelligence</option>
+                        <option value="BT Bio Technology">BT Bio Technology</option>
+                        <option value="CE Civil">CE Civil</option>
+                        <option value="CH Chemical">CH Chemical</option>
+                        <option value="CS Computers">CS Computers</option>
+                        <option value="EC Electronics">EC Electronics</option>
+                        <option value="EE Electrical">EE Electrical</option>
+                        <option value="EI Elec. Inst. Engg">EI Elec. Inst. Engg</option>
+                        <option value="ET Elec. Telecommn. Engg.">ET Elec. Telecommn. Engg.</option>
+                        <option value="IE Info. Science">IE Info. Science</option>
+                        <!-- <option value="IM Ind. Engg. Mgmt.">IM Ind. Engg. Mgmt.</option> -->
+                        <option value="ME Mechanical">ME Mechanical</option>
+                        <option value="SE Aero Space Engg.">SE Aero Space Engg.</option>
+                        <option value="AD Artificial Intel, Data Sc">AD Artificial Intel Data Sc</option>
+                        <!-- <option value="CA CS (AI, Machine Learning)">CA CS (AI, Machine Learning)</option> -->
+                        <option value="CY CS- Cyber Security">CY CS- Cyber Security</option>
+                        <!-- Branch options unchanged -->
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="rank">Rank:</label>
+                    <input type="number" id="rank" name="rank" required min="1" title="Must be a positive integer">
+                </div>
+                
+                <button type="submit">Submit</button>
+            </form>
+            <div id="rankResult"></div>
+        </section>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const application_number = localStorage.getItem('application_number');
+            if (application_number) {
+                document.getElementById('application_number').innerText = `Welcome, ${application_number}`;
+            } else {
+                window.location.href = 'login';
+            }
+
+            document.getElementById('logout-btn').addEventListener('click', function() {
+                localStorage.removeItem('application_number');
+                window.location.href = '/login.html';
+            });
+
+            document.getElementById('hallTicket').addEventListener('input', function() {
+                const hallTicket = this.value;
+                if (hallTicket.match(/^[A-Za-z0-9]+$/)) {
+                    fetch('/fetch_rank', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ hall_ticket_number: hallTicket })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.rank) {
+                            document.getElementById('rank').value = data.rank;
+                        } else {
+                            document.getElementById('rank').value = '';
+                            console.error('Error:', data.error);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                } else {
+                    document.getElementById('rank').value = '';
+                    alert('Hall Ticket Number must contain only letters and numbers.');
+                }
+            });
+
+            // Handle form submission
+            document.getElementById('rankForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const hallTicket = document.getElementById('hallTicket').value;
+                const degree = document.getElementById('degree').value;
+                const branch = document.getElementById('branch').value;
+                const rank = document.getElementById('rank').value;
+                const cast = document.getElementById('Cast').value; // Get caste selection
+                const application_number = localStorage.getItem('application_number'); 
+
+                if (!rank.match(/^\d+$/) || rank <= 0) {
+                    alert('Rank must be a positive integer.');
+                    return;
+                }
+
+                fetch('/validateRank', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ application_number, hallTicket, rank })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        window.location.href = `/collegeDetails.html?branch=${branch}&rank=${rank}&cast=${cast}`;
+                    } else {
+                        alert('Invalid credentials or rank');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

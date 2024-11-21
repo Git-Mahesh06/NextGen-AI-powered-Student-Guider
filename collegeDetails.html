@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Details</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #283c86, #45a247);
+            color: white;
+        }
+
+        header {
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            text-align: center;
+            font-size: 24px;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+            color: white;
+        }
+
+        th {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .message {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+            color: #ffeb3b;
+        }
+    </style>
+</head>
+<body>
+    <header>Available Colleges</header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>College ID</th>
+                    <th>College Name</th>
+                    <th id="cutoffHeader">Predicted Cutoff Rank</th>
+                    <th>Chance of Getting a Seat</th>
+                </tr>
+            </thead>
+            <tbody id="collegeTableBody">
+                <!-- College data will be populated here -->
+            </tbody>
+        </table>
+        <div id="noDataMessage" class="message" style="display: none;">
+            We're sorry, but we couldn't find any colleges that match your rank. Don't worry, keep striving for your dreams—your perfect college is out there!
+        </div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const branch = urlParams.get('branch');
+            const rank = urlParams.get('rank');
+            const cast = urlParams.get('cast');
+
+            // Update the cutoff header based on caste
+            const cutoffHeader = document.getElementById('cutoffHeader');
+            cutoffHeader.textContent = `Predicted ${cast} Cutoff Rank`;
+
+            // Fetch college data from server with caste parameter
+            fetch(`/college_data?branch=${branch}&rank=${rank}&cast=${cast}`)
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.getElementById('collegeTableBody');
+                    const noDataMessage = document.getElementById('noDataMessage');
+                    tableBody.innerHTML = ''; // Clear any existing rows
+
+                    if (data.length === 0) {
+                        noDataMessage.style.display = 'block'; // Show the message
+                    } else {
+                        noDataMessage.style.display = 'none'; // Hide the message if there is data
+                        data.forEach(college => {
+                            const row = document.createElement('tr');
+
+                            // Get the appropriate cutoff rank based on caste
+                            let cutoffRank;
+                            switch (cast) {
+                                case 'SC':
+                                    cutoffRank = college.sc_rank;
+                                    break;
+                                case 'ST':
+                                    cutoffRank = college.st_rank;
+                                    break;
+                                case 'OBC':
+                                    cutoffRank = college.obc_rank;
+                                    break;
+                                case 'GM':
+                                default:
+                                    cutoffRank = college.gm_rank;
+                                    break;
+                            }
+
+                            row.innerHTML = `
+                                <td>${college.college_id}</td>
+                                <td>${college.college_name}</td>
+                                <td>${cutoffRank}</td>
+                                <td>${college.chance}</td>
+                            `;
+                            tableBody.appendChild(row);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching college data:', error);
+                    const noDataMessage = document.getElementById('noDataMessage');
+                    noDataMessage.style.display = 'block';
+                    noDataMessage.textContent = 'There was an error retrieving the data. Please try again later.';
+                });
+        });
+    </script>
+</body>
+</html>

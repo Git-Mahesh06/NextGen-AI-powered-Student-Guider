@@ -1,0 +1,72 @@
+college_id,college_name,branch,gm_rank
+E001,University Visvesvaraya College of Engineering. Bangalore,AI ArtificialIntelligence,4051
+E001,University Visvesvaraya College of Engineering. Bangalore,CE Civil,38067
+E001,University Visvesvaraya College of Engineering. Bangalore,CS Computers,1880
+E001,University Visvesvaraya College of Engineering. Bangalore,EC Electronics,6432
+E001,University Visvesvaraya College of Engineering. Bangalore,EE Electrical,15730
+E001,University Visvesvaraya College of Engineering. Bangalore,IE Info.Science,3046
+E001,University Visvesvaraya College of Engineering. Bangalore,ME Mechanical,48499
+E002,S K S J T Institute of Engineering.Bangalore,CE Civil,71203
+E002,S K S J T Institute of Engineering.Bangalore,CS Computers,10356
+E002,S K S J T Institute of Engineering.Bangalore,EC Electronics,21578
+E002,S K S J T Institute of Engineering.Bangalore,ST Silk Tech.,70523
+E002,S K S J T Institute of Engineering.Bangalore,TX Textiles,96978
+E003,B M S College of Engineering Basavanagudi.Bangalore,CE Civil,31965
+E003,B M S College of Engineering Basavanagudi.Bangalore,EC Electronics,1624
+E003,B M S College of Engineering Basavanagudi.Bangalore,EE Electrical,9431
+E003,B M S College of Engineering Basavanagudi.Bangalore,IM Ind. Engg.Mgmt.,30307
+E003,B M S College of Engineering Basavanagudi.Bangalore,ME Mechanical,11973
+E004,Dr. Ambedkar Institute Of Technology Bangalore,CE Civil,69264
+E004,Dr. Ambedkar Institute Of Technology Bangalore,CS Computers,6817
+E004,Dr. Ambedkar Institute Of Technology Bangalore,EC Electronics,17074
+E004,Dr. Ambedkar Institute Of Technology Bangalore,EE Electrical,33233
+E004,Dr. Ambedkar Institute Of Technology Bangalore,EI Elec. Inst.Engg,47736
+E004,Dr. Ambedkar Institute Of Technology Bangalore,ET Elec.Telecommn. Engg.,38212
+E004,Dr. Ambedkar Institute Of Technology Bangalore,IM Ind. Engg.Mgmt.,67542
+E004,Dr. Ambedkar Institute Of Technology Bangalore,ME Mechanical,91424
+E005,R.V.College of Engineering Bangalore,AI ArtificialIntelligence,396
+E005,R.V.College of Engineering Bangalore,BT Bio Technology,4146
+E005,R.V.College of Engineering Bangalore,CE Civil,16763
+E005,R.V.College of Engineering Bangalore,CH Chemical,7384
+E005,R.V.College of Engineering Bangalore,CS Computers,169
+E005,R.V.College of Engineering Bangalore,CY CS- CyberSecurity,571
+E005,R.V.College of Engineering Bangalore,DS Comp. Sc. Engg-Data Sc.,639
+E005,R.V.College of Engineering Bangalore,EC Electronics,679
+E005,R.V.College of Engineering Bangalore,EE Electrical,2033
+E005,R.V.College of Engineering Bangalore,EI Elec. Inst.Engg,3257
+E005,R.V.College of Engineering Bangalore,ET Elec.Telecommn. Engg.,2363
+E005,R.V.College of Engineering Bangalore,IE Info.Science,237
+E005,R.V.College of Engineering Bangalore,IM Ind. Engg.Mgmt.,14347
+E005,R.V.College of Engineering Bangalore,ME Mechanical,5601
+E005,R.V.College of Engineering Bangalore,SE Aero SpaceEngg.,2083
+E005,R.V.College of Engineering Bangalore,AD ArtificialIntel ,1817
+E007,Dayananda Sagar College of Engineering Bangalore,AI ArtificialIntelligence,3329
+E007,Dayananda Sagar College of Engineering Bangalore,AE Aeronaut.Engg,10265
+E007,Dayananda Sagar College of Engineering Bangalore,AU Automobile,47937
+E007,Dayananda Sagar College of Engineering Bangalore,BT Bio Technology,13072
+E007,Dayananda Sagar College of Engineering Bangalore,CD Computer Sc.and Design,4936
+E007,Dayananda Sagar College of Engineering Bangalore,CE Civil,54629
+E007,Dayananda Sagar College of Engineering Bangalore,CH Chemical,33552
+E007,Dayananda Sagar College of Engineering Bangalore,CS Computers,2669
+E007,Dayananda Sagar College of Engineering Bangalore,EC Electronics,7793
+E007,Dayananda Sagar College of Engineering Bangalore,EE Electrical,19549
+E007,Dayananda Sagar College of Engineering Bangalore,EI Elec. Inst.Engg,29437
+E007,Dayananda Sagar College of Engineering Bangalore,ET Elec.Telecommn. Engg.,27213
+E007,Dayananda Sagar College of Engineering Bangalore,IE Info.Science,3494
+E007,Dayananda Sagar College of Engineering Bangalore,MD Med.Elect.,31769
+E007,Dayananda Sagar College of Engineering Bangalore,ME Mechanical,42019
+E008,Bangalore Institute of Technology Bangalore,AI ArtificialIntelligence,4468
+E008,Bangalore Institute of Technology Bangalore,CE Civil,71413
+E008,Bangalore Institute of Technology Bangalore,CS Computers,2934
+E008,Bangalore Institute of Technology Bangalore,EC Electronics,8215
+E008,Bangalore Institute of Technology Bangalore,EE Electrical,19740
+E008,Bangalore Institute of Technology Bangalore,EI Elec. Inst.Engg,31640
+E008,Bangalore Institute of Technology Bangalore,ET Elec.Telecommn. Engg.,18880
+E008,Bangalore Institute of Technology Bangalore,IE Info.Science,4038
+E008,Bangalore Institute of Technology Bangalore,IM Ind. Engg.Mgmt.,47139
+E008,Bangalore Institute of Technology Bangalore,ME Mechanical,65524
+E009,P E S University (Ring Road Campus) Bangalore,BT Bio Technology,5238
+E009,P E S University (Ring Road Campus) Bangalore,CS Computers,547
+E009,P E S University (Ring Road Campus) Bangalore,EC Electronics,2060
+E009,P E S University (Ring Road Campus) Bangalore,EE Electrical,4698
+E009,P E S University (Ring Road Campus) Bangalore,ME Mechanical,14332
